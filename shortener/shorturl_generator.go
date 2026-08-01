@@ -29,10 +29,10 @@ func base58Encoded(bytes []byte) string {
 
 func GenerateShortLink(initialLink, userId string) string {
 	urlHashBytes := sha2560f(initialLink + userId)
-	fmt.Printf("urlHashBytes: [%s]", urlHashBytes)
 	generatedNumber := new(big.Int).SetBytes(urlHashBytes).Uint64()
-	fmt.Printf("generatedNumber: [%d]", generatedNumber)
-	finalString := base58Encoded([]byte(fmt.Sprintf("%d", generatedNumber)))
+
+	numStr := fmt.Sprintf("%d", generatedNumber)
+	finalString := base58Encoded([]byte(numStr))
 
 	return finalString[:8]
 }
